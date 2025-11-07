@@ -1,0 +1,115 @@
+.breathing-exercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--spacing-xl);
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  position: relative;
+}
+
+.exit-button {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: white;
+  color: var(--color-text);
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  border: none;
+  transition: all 0.2s;
+}
+
+.exit-button:hover {
+  background: #f5f5f5;
+  transform: scale(1.1);
+}
+
+.breathing-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xxl);
+}
+
+.breathing-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.breathing-cycle {
+  font-size: 16px;
+  color: var(--color-text-light);
+}
+
+.breathing-visual {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--spacing-xxl) 0;
+}
+
+.breathing-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(139, 157, 131, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(139, 157, 131, 0.3);
+}
+
+.breathing-circle-inner {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 20px rgba(139, 157, 131, 0.5);
+}
+
+.breathing-instruction {
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+.breathing-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-lg);
+  min-height: 32px;
+}
+
+.breathing-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.breathing-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.1s linear;
+}
+
+.breathing-hint {
+  margin-top: var(--spacing-xl);
+  font-size: 14px;
+  color: var(--color-text-light);
+  text-align: center;
+}
