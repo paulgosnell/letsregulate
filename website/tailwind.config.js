@@ -30,7 +30,10 @@ export default {
           dark: '#FF8BB8'
         },
         cream: '#F5F5F0',
-        slate: '#6B7280',
+        slate: {
+          light: '#9CA3AF',
+          DEFAULT: '#6B7280',
+        },
       },
       fontFamily: {
         sans: ['Nunito', 'sofia-sans', 'Quicksand', 'system-ui', 'sans-serif'],

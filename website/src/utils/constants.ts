@@ -1,3 +1,6 @@
+// App Configuration
+export const APP_URL = import.meta.env.VITE_APP_URL || 'http://localhost:5179';
+
 export const colors = {
   seaGlass: '#8B9D83',
   sage: '#A8B5A0',

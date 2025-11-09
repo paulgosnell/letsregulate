@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import WaveBackground from './WaveBackground';
 import BreathingAnimation from './BreathingAnimation';
 import Logo from './Logo';
+import { APP_URL } from '../utils/constants';
 
 export default function Hero() {
   const scrollToSection = (id: string) => {
@@ -13,16 +14,15 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-cream to-lavender-light">
       <WaveBackground color="#9B7EBD" className="opacity-40" />
 
-      {/* Header with Logo and Sign Up */}
+      {/* Header with Logo and Launch App */}
       <div className="absolute top-0 left-0 right-0 z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
           <Logo size="medium" />
-          <button
-            onClick={() => scrollToSection('cta')}
-            className="btn-primary text-base"
-          >
-            Sign Up
-          </button>
+          <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+            <button className="btn-primary text-base">
+              Launch App
+            </button>
+          </a>
         </div>
       </div>
 
@@ -78,12 +78,11 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <button
-              onClick={() => scrollToSection('cta')}
-              className="btn-primary text-lg"
-            >
-              Get Started
-            </button>
+            <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+              <button className="btn-primary text-lg">
+                Get Started
+              </button>
+            </a>
             <button
               onClick={() => scrollToSection('what-it-is')}
               className="btn-secondary text-lg"
