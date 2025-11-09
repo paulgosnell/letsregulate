@@ -9,21 +9,18 @@ export default function HowItWorks() {
 
   const steps = [
     {
-      number: 1,
       title: "Create your profile",
       description: "Personalise your toolkit with your child's age, interests, and needs.",
       icon: User,
       colorClass: "bg-lavender"
     },
     {
-      number: 2,
       title: "Choose how you feel today",
       description: "Calm, tired, motivated, worried…",
       icon: MessageCircle,
       colorClass: "bg-sky"
     },
     {
-      number: 3,
       title: "Get your tools",
       description: "Breathing games, creative prompts, affirmations, and mindful movement designed just for you.",
       icon: Gift,
@@ -48,18 +45,15 @@ export default function HowItWorks() {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {steps.map((step, index) => (
             <motion.div
-              key={step.number}
+              key={index}
               initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.8, delay: index * 0.2 }}
               className="card text-center"
             >
-              <div className="relative mb-6">
-                <div className={`w-20 h-20 mx-auto ${step.colorClass} rounded-full flex items-center justify-center text-slate text-2xl font-bold`}>
-                  {step.number}
-                </div>
-                <div className="mt-4 flex justify-center">
-                  <step.icon className="w-12 h-12 text-slate" />
+              <div className="relative mb-6 flex justify-center">
+                <div className={`w-20 h-20 ${step.colorClass} rounded-full flex items-center justify-center`}>
+                  <step.icon className="w-10 h-10 text-white" />
                 </div>
               </div>
               <h3 className="text-xl sm:text-2xl font-semibold text-slate mb-4">
