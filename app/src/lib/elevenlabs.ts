@@ -93,14 +93,6 @@ export class VoiceConversation {
     return data.signed_url || `wss://api.elevenlabs.io/v1/convai/conversation?agent_id=${ELEVENLABS_AGENT_ID}`;
   }
 
-  async sendText(text: string) {
-    if (!this.conversation) {
-      throw new Error('Conversation not initialized');
-    }
-
-    await this.conversation.sendUserInput(text);
-  }
-
   async endSession() {
     if (this.conversation) {
       await this.conversation.endSession();
