@@ -39,70 +39,21 @@ export default function AppShowcase() {
                   {/* Notch */}
                   <div className="absolute top-2 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate rounded-full z-20" />
 
-                  {/* App Content */}
-                  <div className="w-full h-full flex flex-col bg-cream pt-10">
-                    {/* Header */}
-                    <div className="px-6 py-4 text-center">
-                      <h3 className="text-lg font-bold text-slate mb-1">Voice Chat</h3>
-                      <p className="text-xs text-mint-dark font-semibold">Connected - You can talk now!</p>
-                    </div>
-
-                    {/* Voice Animation Container */}
-                    <div className="flex-1 flex items-center justify-center px-6">
-                      <div className="relative">
-                        {/* Pulsing background */}
-                        <motion.div
-                          className="absolute inset-0 rounded-full bg-mint opacity-20 blur-xl"
-                          animate={{ scale: [1, 1.3, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-
-                        {/* Voice Waves */}
-                        <div className="relative flex items-center justify-center gap-1.5 h-24">
-                          {[
-                            { color: '#C4A7E7', delay: 0 },
-                            { color: '#A4CAFE', delay: 0.1 },
-                            { color: '#FFB3D1', delay: 0.2 },
-                            { color: '#FFB4A2', delay: 0.3 },
-                            { color: '#A8E6CF', delay: 0.4 },
-                          ].map((wave, i) => (
-                            <motion.div
-                              key={i}
-                              className="w-2 rounded-full"
-                              style={{ backgroundColor: wave.color }}
-                              animate={{
-                                height: ['30%', '100%', '30%'],
-                              }}
-                              transition={{
-                                duration: 1,
-                                repeat: Infinity,
-                                ease: 'easeInOut',
-                                delay: wave.delay,
-                              }}
-                            />
-                          ))}
-                        </div>
-
-                        {/* Microphone Icon */}
-                        <motion.div
-                          className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-12 h-12 rounded-full bg-mint flex items-center justify-center shadow-lg"
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        >
-                          <Mic className="w-6 h-6 text-white" />
-                        </motion.div>
-                      </div>
-                    </div>
-
-                    {/* Transcript Preview */}
-                    <div className="px-4 pb-4">
-                      <div className="bg-lavender-light rounded-2xl p-3 text-xs">
-                        <p className="font-semibold text-lavender-dark mb-1">Regulation Buddy:</p>
-                        <p className="text-slate leading-relaxed">
-                          Hi there! I heard you're feeling happy today. That's wonderful! Want to tell me more about it?
-                        </p>
-                      </div>
-                    </div>
+                  {/* App Content - Video Demo */}
+                  <div className="w-full h-full flex items-center justify-center bg-cream overflow-hidden">
+                    <video
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                    >
+                      <source
+                        src="https://wgrqgcwabpebxtkwmnkb.supabase.co/storage/v1/object/public/video/Bubble_Character_Animation_Request.mp4"
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
                   </div>
                 </div>
 
