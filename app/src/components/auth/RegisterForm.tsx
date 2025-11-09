@@ -82,18 +82,9 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
 
       if (profileError) throw profileError;
 
-      // Initialize rewards
-      const { error: rewardsError } = await supabase
-        .from('rewards')
-        .insert({
-          user_id: authData.user.id,
-          stars: 0,
-          coins: 0
-        });
+      // Rewards are automatically created by database trigger
 
-      if (rewardsError) throw rewardsError;
-
-      toast.success('Account created!');
+      toast.success('Account created! Please check your email to confirm.');
       onSuccess();
     } catch (error: any) {
       console.error('Registration error:', error);
