@@ -39,8 +39,8 @@ vercel --prod
 
 ### App (Main Application)
 
-**Deploy to:** Vercel (separate project) or another platform
-**Recommended URL:** https://app.letsregulate.com (or similar)
+**Deploy to:** Vercel (separate project)
+**URL:** https://app-letsregulate.vercel.app
 
 #### Environment Variables Required
 
@@ -67,11 +67,11 @@ VITE_ELEVENLABS_AGENT_ID=your-agent-id
 
 ### Update App URL in Website
 
-After deploying the app, update the website to link to the correct URL:
+The website is already configured to link to `https://app-letsregulate.vercel.app` via the `VITE_APP_URL` environment variable set in `website/vercel.json`.
 
-1. In Vercel dashboard for the website project
-2. Add environment variable: `VITE_APP_URL=https://your-app-url.vercel.app`
-3. Redeploy the website
+If you need to change this URL:
+1. Update `website/vercel.json` env section
+2. Commit and push changes to trigger redeployment
 
 ### Supabase Redirect URLs
 
@@ -80,10 +80,10 @@ After deploying the app, add the production URL to Supabase:
 1. Go to Supabase Dashboard → Authentication → URL Configuration
 2. Add to **Redirect URLs**:
    ```
-   https://your-app-url.vercel.app
-   https://your-app-url.vercel.app/
+   https://app-letsregulate.vercel.app
+   https://app-letsregulate.vercel.app/
    ```
-3. Update the **Site URL** to match your app URL
+3. Update the **Site URL** to: `https://app-letsregulate.vercel.app`
 
 ## Testing Deployment
 
