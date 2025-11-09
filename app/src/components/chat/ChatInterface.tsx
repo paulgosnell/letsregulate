@@ -75,7 +75,25 @@ export function ChatInterface({ userId, sessionId, mood, onToolSuggested }: Chat
       <div className="chat-messages">
         {messages.length === 0 && (
           <div className="chat-welcome">
-            <h2>Hi! I'm your Regulation Buddy</h2>
+            <div className="lumna-avatar">
+              <video
+                className="lumna-video"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source
+                  src="https://wgrqgcwabpebxtkwmnkb.supabase.co/storage/v1/object/public/video/lumna.mov"
+                  type="video/quicktime"
+                />
+                <source
+                  src="https://wgrqgcwabpebxtkwmnkb.supabase.co/storage/v1/object/public/video/lumna.mov"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <h2>Hi! I'm Lumna</h2>
             <p>Tell me how you're feeling today, and we can chat about it together.</p>
           </div>
         )}
