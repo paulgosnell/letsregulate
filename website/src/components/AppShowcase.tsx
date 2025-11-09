@@ -78,7 +78,7 @@ export default function AppShowcase() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate leading-tight">
               Talk to your{' '}
               <span className="bg-gradient-to-r from-lavender-dark via-mint-dark to-sky-dark bg-clip-text text-transparent">
-                Lumna
+                Luma
               </span>
             </h2>
 

@@ -75,9 +75,9 @@ export function ChatInterface({ userId, sessionId, mood, onToolSuggested }: Chat
       <div className="chat-messages">
         {messages.length === 0 && (
           <div className="chat-welcome">
-            <div className="lumna-avatar">
+            <div className="luma-avatar">
               <video
-                className="lumna-video"
+                className="luma-video"
                 autoPlay
                 loop
                 muted
@@ -93,8 +93,8 @@ export function ChatInterface({ userId, sessionId, mood, onToolSuggested }: Chat
                 />
               </video>
             </div>
-            <h2>Hi! I'm Lumna</h2>
-            <p>Tell me how you're feeling today, and we can chat about it together.</p>
+            <h2>Hi! I'm Luma</h2>
+            <p>I'm here to listen.</p>
           </div>
         )}
 
@@ -120,7 +120,7 @@ export function ChatInterface({ userId, sessionId, mood, onToolSuggested }: Chat
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Type your message..."
+          placeholder="How are you?"
           disabled={loading}
           maxLength={500}
           rows={1}

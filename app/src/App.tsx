@@ -148,9 +148,6 @@ function App() {
 
         {view === 'chat' && (
           <div className="chat-view">
-            <div className="chat-mood-badge">
-              You're feeling: <strong>{currentMood}</strong>
-            </div>
             <ChatInterface
               userId={user.id}
               sessionId={sessionId}

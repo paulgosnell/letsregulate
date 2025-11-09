@@ -81,19 +81,9 @@ export default function Logo({
         stroke="url(#logoWaveGradient)"
         strokeWidth="4"
         strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        animate={{
-          pathLength: 1,
-          d: [
-            "M 130 130 Q 165 115 200 130 T 270 130",
-            "M 130 130 Q 165 145 200 130 T 270 130",
-            "M 130 130 Q 165 115 200 130 T 270 130"
-          ]
-        }}
-        transition={{
-          pathLength: { duration: 1.5, ease: "easeInOut" },
-          d: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-        }}
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
       />
 
       {/* Text: "Lets Regulate" */}

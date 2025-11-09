@@ -9,6 +9,7 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log('useAuth: Initializing auth check');
     // Check active session
     supabase.auth.getSession().then(({ data: { session }, error }) => {
       if (error) {
@@ -17,10 +18,13 @@ export function useAuth() {
         return;
       }
 
+      console.log('useAuth: Session found:', !!session?.user);
       setUser(session?.user ?? null);
       if (session?.user) {
+        console.log('useAuth: Loading profile for user', session.user.id);
         loadProfile(session.user.id);
       } else {
+        console.log('useAuth: No session, setting loading to false');
         setLoading(false);
       }
     });
@@ -44,20 +48,24 @@ export function useAuth() {
   }, []);
 
   async function loadProfile(userId: string, retries = 3) {
+    console.log(`useAuth: loadProfile called for ${userId}, retries: ${retries}`);
     try {
       const profileData = await getProfile(userId);
+      console.log('useAuth: Profile loaded successfully', profileData);
       setProfile(profileData);
       setLoading(false);
+      console.log('useAuth: Loading set to false');
     } catch (error: any) {
-      console.error('Error loading profile:', error);
+      console.error('useAuth: Error loading profile:', error);
 
       // Retry if profile not found (might be creating via trigger)
       if (retries > 0 && (error.code === 'PGRST116' || error.message?.includes('No rows'))) {
-        console.log(`Retrying profile load... (${retries} attempts left)`);
+        console.log(`useAuth: Retrying profile load... (${retries} attempts left)`);
         await new Promise(resolve => setTimeout(resolve, 1000));
         return loadProfile(userId, retries - 1);
       }
 
+      console.log('useAuth: All retries exhausted, setting loading to false');
       setLoading(false);
     }
   }
