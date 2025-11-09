@@ -38,12 +38,12 @@ export default function BreathingAnimation({
         style={{
           width: size * 0.7,
           height: size * 0.7,
-          backgroundColor: color,
-          opacity: opacity * 1.5
+          backgroundColor: '#D5F5E6', // mint-light for better contrast
+          opacity: opacity * 1.8
         }}
         animate={{
           scale: [1, 1.4, 1],
-          opacity: [opacity * 1.5, opacity * 2, opacity * 1.5]
+          opacity: [opacity * 1.8, opacity * 2.5, opacity * 1.8]
         }}
         transition={{
           duration: 8,
