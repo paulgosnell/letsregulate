@@ -119,7 +119,7 @@ export async function loadConversationHistory(
 ): Promise<DBChatMessage[]> {
   const { data, error } = await supabase
     .from('ai_logs')
-    .select('id, role, content, created_at, metadata')
+    .select('id, role, content, created_at, metadata, output')
     .eq('session_id', sessionId)
     .order('created_at', { ascending: true })
     .limit(limit);
@@ -141,7 +141,7 @@ export async function loadRecentConversations(
 ): Promise<DBChatMessage[]> {
   const { data, error } = await supabase
     .from('ai_logs')
-    .select('id, role, content, created_at, metadata, session_id')
+    .select('id, role, content, created_at, metadata, session_id, output')
     .eq('user_id', userId)
     .order('created_at', { ascending: false })
     .limit(limit);

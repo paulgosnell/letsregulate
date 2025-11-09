@@ -28,7 +28,7 @@ export function VoiceChat({ onClose, mood }: VoiceChatProps) {
         conversationRef.current.endSession();
         conversationRef.current = null;
       }
-      hasInitialized.current = false;
+      // Don't reset hasInitialized to prevent double initialization in Strict Mode
     };
   }, []);
 
