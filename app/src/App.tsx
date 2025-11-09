@@ -10,11 +10,12 @@ import { BreathingExercise } from './components/tools/BreathingExercise';
 import { MovementExercise } from './components/tools/MovementExercise';
 import { AffirmationExercise } from './components/tools/AffirmationExercise';
 import { LoadingSpinner } from './components/ui/LoadingSpinner';
-import { ToastContainer } from './components/ui/Toast';
+import { ToastContainer, toast } from './components/ui/Toast';
 import Logo from './components/ui/Logo';
 import { createSession } from './lib/supabase';
 import { MoodType, ToolType } from './types';
 import { STARS_PER_TOOL_COMPLETION } from './utils/constants';
+import { parseAuthErrorFromUrl, clearAuthErrorFromUrl, getAuthErrorMessage } from './utils/auth-errors';
 import './App.css';
 
 type View = 'auth' | 'mood-select' | 'chat' | 'tool';
@@ -29,6 +30,16 @@ function App() {
   const [currentMood, setCurrentMood] = useState<MoodType | undefined>();
   const [currentTool, setCurrentTool] = useState<ToolType | undefined>();
   const [sessionId, setSessionId] = useState<string>('');
+
+  // Check for auth errors in URL on mount
+  useEffect(() => {
+    const authError = parseAuthErrorFromUrl();
+    if (authError) {
+      const errorMessage = getAuthErrorMessage(authError);
+      toast.error(errorMessage);
+      clearAuthErrorFromUrl();
+    }
+  }, []);
 
   useEffect(() => {
     if (user && !sessionId) {
