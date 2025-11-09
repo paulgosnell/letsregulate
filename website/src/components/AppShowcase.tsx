@@ -78,7 +78,7 @@ export default function AppShowcase() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate leading-tight">
               Talk to your{' '}
               <span className="bg-gradient-to-r from-lavender-dark via-mint-dark to-sky-dark bg-clip-text text-transparent">
-                Regulation Buddy
+                Lumna
               </span>
             </h2>
 
@@ -108,7 +108,7 @@ export default function AppShowcase() {
                 <div>
                   <h3 className="font-bold text-slate mb-1">Always Understanding</h3>
                   <p className="text-slate-light leading-relaxed">
-                    Regulation Buddy listens without judgment, validates feelings, and gently guides children toward helpful coping strategies.
+                    Lumna listens without judgment, validates feelings, and gently guides children toward helpful coping strategies.
                   </p>
                 </div>
               </div>
