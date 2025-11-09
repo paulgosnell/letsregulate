@@ -1,0 +1,155 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: white;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.app-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.app-user-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.app-rewards {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.reward-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+.app-sign-out {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: transparent;
+  color: var(--color-text-light);
+  border: 1px solid #E5E5E5;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  min-height: 36px;
+}
+
+.app-sign-out:hover {
+  background: #F5F5F5;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 60px);
+}
+
+.chat-mood-badge {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: #FFF9E6;
+  border-bottom: 1px solid #FFE699;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.chat-mood-badge strong {
+  color: var(--color-primary);
+  text-transform: capitalize;
+}
+
+.tool-shortcuts {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background: white;
+  border-top: 1px solid #E5E5E5;
+  overflow-x: auto;
+}
+
+.tool-shortcut-button {
+  flex: 1;
+  min-width: 100px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: white;
+  color: var(--color-text);
+  border: 2px solid #E5E5E5;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-shortcut-button:hover {
+  border-color: var(--lavender-dark);
+  background: var(--lavender-light);
+  transform: translateY(-2px);
+}
+
+.tool-shortcut-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .app-logo {
+    font-size: 18px;
+  }
+
+  .reward-item {
+    font-size: 14px;
+  }
+
+  .app-sign-out {
+    font-size: 12px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .tool-shortcuts {
+    overflow-x: auto;
+  }
+
+  .tool-shortcut-button {
+    font-size: 12px;
+  }
+}
