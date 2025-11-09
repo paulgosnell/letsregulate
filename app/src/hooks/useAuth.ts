@@ -10,7 +10,13 @@ export function useAuth() {
 
   useEffect(() => {
     // Check active session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (error) {
+        console.error('Session error:', error);
+        setLoading(false);
+        return;
+      }
+
       setUser(session?.user ?? null);
       if (session?.user) {
         loadProfile(session.user.id);
@@ -21,7 +27,9 @@ export function useAuth() {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (event, session) => {
+        console.log('Auth state changed:', event, session?.user?.id);
+
         setUser(session?.user ?? null);
         if (session?.user) {
           await loadProfile(session.user.id);
@@ -35,13 +43,21 @@ export function useAuth() {
     return () => subscription.unsubscribe();
   }, []);
 
-  async function loadProfile(userId: string) {
+  async function loadProfile(userId: string, retries = 3) {
     try {
       const profileData = await getProfile(userId);
       setProfile(profileData);
-    } catch (error) {
+      setLoading(false);
+    } catch (error: any) {
       console.error('Error loading profile:', error);
-    } finally {
+
+      // Retry if profile not found (might be creating via trigger)
+      if (retries > 0 && (error.code === 'PGRST116' || error.message?.includes('No rows'))) {
+        console.log(`Retrying profile load... (${retries} attempts left)`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return loadProfile(userId, retries - 1);
+      }
+
       setLoading(false);
     }
   }
