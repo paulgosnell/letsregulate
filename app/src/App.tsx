@@ -66,11 +66,17 @@ function App() {
   };
 
   const handleToolComplete = async () => {
-    // Award stars
-    await addReward(STARS_PER_TOOL_COMPLETION);
-    // Return to chat
-    setCurrentTool(undefined);
-    setView('chat');
+    try {
+      // Award stars
+      await addReward(STARS_PER_TOOL_COMPLETION);
+    } catch (error) {
+      console.error('Error awarding stars:', error);
+      // Still return to chat even if rewards fail
+    } finally {
+      // Always return to chat
+      setCurrentTool(undefined);
+      setView('chat');
+    }
   };
 
   const handleToolExit = () => {
