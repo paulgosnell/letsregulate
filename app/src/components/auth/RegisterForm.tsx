@@ -3,7 +3,6 @@ import { supabase } from '../../lib/supabase';
 import { toast } from '../ui/Toast';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
 import { UserRole } from '../../types';
-import './AuthForms.css';
 
 interface RegisterFormProps {
   onSuccess: () => void;
@@ -99,32 +98,34 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
   }
 
   return (
-    <div className="auth-form">
-      <h1 className="auth-title">Join Let's Regulate</h1>
-      <p className="auth-subtitle">Create your account to get started</p>
+    <div className="max-w-md w-full mx-auto p-6">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-slate-700 mb-2">Join Let's Regulate</h1>
+        <p className="text-slate-500">Create your account to get started</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label htmlFor="name" className="form-label">Name *</label>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-semibold text-slate-600">Name *</label>
           <input
             id="name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="Your name"
             autoComplete="name"
             disabled={loading}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="role" className="form-label">I am a *</label>
+        <div className="space-y-2">
+          <label htmlFor="role" className="block text-sm font-semibold text-slate-600">I am a *</label>
           <select
             id="role"
             value={role}
             onChange={(e) => setRole(e.target.value as UserRole)}
-            className="form-input"
+            className="input-field"
             disabled={loading}
           >
             <option value="child">Child</option>
@@ -134,8 +135,8 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
         </div>
 
         {role === 'child' && (
-          <div className="form-group">
-            <label htmlFor="age" className="form-label">Age (3-17)</label>
+          <div className="space-y-2">
+            <label htmlFor="age" className="block text-sm font-semibold text-slate-600">Age (3-17)</label>
             <input
               id="age"
               type="number"
@@ -143,64 +144,64 @@ export function RegisterForm({ onSuccess, onSwitchToLogin }: RegisterFormProps) 
               max="17"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="form-input"
+              className="input-field"
               placeholder="Your age"
               disabled={loading}
             />
           </div>
         )}
 
-        <div className="form-group">
-          <label htmlFor="email" className="form-label">Email *</label>
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-semibold text-slate-600">Email *</label>
           <input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="your@email.com"
             autoComplete="email"
             disabled={loading}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password" className="form-label">Password *</label>
+        <div className="space-y-2">
+          <label htmlFor="password" className="block text-sm font-semibold text-slate-600">Password *</label>
           <input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="At least 6 characters"
             autoComplete="new-password"
             disabled={loading}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="confirmPassword" className="form-label">Confirm Password *</label>
+        <div className="space-y-2">
+          <label htmlFor="confirmPassword" className="block text-sm font-semibold text-slate-600">Confirm Password *</label>
           <input
             id="confirmPassword"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="Re-enter password"
             autoComplete="new-password"
             disabled={loading}
           />
         </div>
 
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className="btn-primary w-full mt-6" disabled={loading}>
           Create Account
         </button>
       </form>
 
-      <div className="auth-footer">
-        <p className="auth-switch">
+      <div className="mt-8 text-center">
+        <p className="text-slate-500">
           Already have an account?{' '}
-          <button onClick={onSwitchToLogin} className="link-button">
+          <button onClick={onSwitchToLogin} className="text-lavender-dark font-semibold hover:underline">
             Sign In
           </button>
         </p>
