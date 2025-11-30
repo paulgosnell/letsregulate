@@ -135,7 +135,7 @@ export default function Hero() {
                         <motion.div
                             animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
-                            className="absolute top-0 left-0 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
+                            className="absolute top-0 left-0 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-full border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-mint/20 flex items-center justify-center group-hover:bg-mint/30 transition-colors">
                                 <Wind className="w-6 h-6 text-mint-dark" />
@@ -147,7 +147,7 @@ export default function Hero() {
                         <motion.div
                             animate={{ y: [10, -10, 10], x: [10, -10, 10] }}
                             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute top-1/3 -right-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-10 transform hover:scale-110 transition-transform cursor-pointer group"
+                            className="absolute top-1/3 -right-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-full border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-10 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-peach/20 flex items-center justify-center group-hover:bg-peach/30 transition-colors">
                                 <Users className="w-6 h-6 text-peach-dark" />
@@ -159,7 +159,7 @@ export default function Hero() {
                         <motion.div
                             animate={{ y: [-5, 5, -5], x: [-10, 10, -10] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                            className="absolute bottom-0 left-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
+                            className="absolute bottom-0 left-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-full border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-lavender/20 flex items-center justify-center group-hover:bg-lavender/30 transition-colors">
                                 <Sparkles className="w-6 h-6 text-lavender-dark" />
