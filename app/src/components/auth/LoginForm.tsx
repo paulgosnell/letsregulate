@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { supabase } from '../../lib/supabase';
 import { toast } from '../ui/Toast';
 import { LoadingSpinner } from '../ui/LoadingSpinner';
-import './AuthForms.css';
 
 interface LoginFormProps {
   onSuccess: () => void;
@@ -59,48 +58,50 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: LoginFormProps) {
   }
 
   return (
-    <div className="auth-form">
-      <h1 className="auth-title">Welcome Back!</h1>
-      <p className="auth-subtitle">Sign in to continue your journey</p>
+    <div className="max-w-md w-full mx-auto p-6">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-slate-700 mb-2">Welcome Back!</h1>
+        <p className="text-slate-500">Sign in to continue your journey</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="form">
-        <div className="form-group">
-          <label htmlFor="email" className="form-label">Email</label>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-semibold text-slate-600">Email</label>
           <input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="your@email.com"
             autoComplete="email"
             disabled={loading}
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password" className="form-label">Password</label>
+        <div className="space-y-2">
+          <label htmlFor="password" className="block text-sm font-semibold text-slate-600">Password</label>
           <input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="form-input"
+            className="input-field"
             placeholder="••••••"
             autoComplete="current-password"
             disabled={loading}
           />
         </div>
 
-        <button type="submit" className="btn btn-primary" disabled={loading}>
+        <button type="submit" className="btn-primary w-full" disabled={loading}>
           Sign In
         </button>
       </form>
 
-      <div className="auth-footer">
-        <p className="auth-switch">
+      <div className="mt-8 text-center">
+        <p className="text-slate-500">
           Don't have an account?{' '}
-          <button onClick={onSwitchToRegister} className="link-button">
+          <button onClick={onSwitchToRegister} className="text-lavender-dark font-semibold hover:underline">
             Sign Up
           </button>
         </p>

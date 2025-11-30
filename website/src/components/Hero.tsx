@@ -89,64 +89,93 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                {/* Right Content - Floating 3D Mockup */}
+                {/* Right Content - Magical Toolkit Visualization */}
                 <motion.div
-                    initial={{ opacity: 0, y: 50, rotate: 5 }}
-                    animate={{ opacity: 1, y: 0, rotate: -2 }}
-                    transition={{ duration: 1, delay: 0.4, type: "spring" }}
-                    className="relative hidden lg:block"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.2 }}
+                    className="relative hidden lg:flex items-center justify-center h-[600px]"
                 >
-                    {/* Decorative circles behind */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-lavender/30 to-sky/30 rounded-full blur-3xl animate-pulse" />
+                    {/* Central Glowing Core */}
+                    <div className="absolute w-[500px] h-[500px] bg-gradient-to-tr from-lavender/40 to-sky/40 rounded-full blur-3xl animate-pulse" />
 
-                    {/* Container for Phone + Floaters */}
-                    <div className="relative w-full max-w-md mx-auto aspect-[4/5] transform hover:scale-[1.02] transition-transform duration-500">
-                        {/* Glass Card Mockup (Clipped) */}
-                        <div className="absolute inset-0 rounded-[2.5rem] bg-white/20 backdrop-blur-xl border border-white/40 shadow-2xl p-6 flex flex-col overflow-hidden z-10">
-                            {/* Mockup Header */}
-                            <div className="flex items-center justify-between mb-8 opacity-80">
-                                <div className="w-8 h-8 rounded-full bg-white/40" />
-                                <div className="w-24 h-4 rounded-full bg-white/40" />
-                                <div className="w-8 h-8 rounded-full bg-white/40" />
-                            </div>
-
-                            {/* Mockup Content */}
-                            <div className="space-y-6 flex-1">
-                                <div className="h-48 rounded-3xl bg-gradient-to-br from-lavender-light to-white/50 w-full animate-pulse" />
-                                <div className="space-y-3">
-                                    <div className="h-6 w-3/4 bg-white/40 rounded-full" />
-                                    <div className="h-4 w-full bg-white/20 rounded-full" />
-                                    <div className="h-4 w-5/6 bg-white/20 rounded-full" />
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-4 mt-8">
-                                    <div className="h-32 rounded-2xl bg-mint-light/50 backdrop-blur-sm p-4">
-                                        <div className="w-8 h-8 rounded-full bg-mint mb-2" />
-                                        <div className="h-3 w-20 bg-mint-dark/20 rounded-full" />
-                                    </div>
-                                    <div className="h-32 rounded-2xl bg-peach-light/50 backdrop-blur-sm p-4">
-                                        <div className="w-8 h-8 rounded-full bg-peach mb-2" />
-                                        <div className="h-3 w-20 bg-peach-dark/20 rounded-full" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Floating Elements around mockup (Unclipped) */}
+                    {/* Orbiting System Container */}
+                    <div className="relative w-[400px] h-[400px]">
+                        {/* Center Hub */}
                         <motion.div
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute -right-8 top-20 bg-white p-4 rounded-2xl shadow-xl z-20"
+                            animate={{ y: [-10, 10, -10] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-0 m-auto w-48 h-48 bg-white/30 backdrop-blur-md rounded-full border border-white/60 shadow-[0_0_40px_rgba(255,255,255,0.5)] flex items-center justify-center z-20"
                         >
-                            <span className="text-2xl">🧘‍♀️</span>
+                            <div className="text-center">
+                                <span className="text-6xl mb-2 block">✨</span>
+                                <span className="font-bold text-slate-700 text-lg tracking-wide">Luma</span>
+                            </div>
                         </motion.div>
+
+                        {/* Orbiting Card 1: Breathe (Top Left) */}
                         <motion.div
-                            animate={{ y: [0, 15, 0] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                            className="absolute -left-8 bottom-32 bg-white p-4 rounded-2xl shadow-xl z-20"
+                            animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0 }}
+                            className="absolute top-0 left-0 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
-                            <span className="text-2xl">✨</span>
+                            <div className="w-12 h-12 rounded-full bg-mint/20 flex items-center justify-center group-hover:bg-mint/30 transition-colors">
+                                <span className="text-3xl">🌬️</span>
+                            </div>
+                            <span className="font-semibold text-slate-600 text-sm">Breathe</span>
                         </motion.div>
+
+                        {/* Orbiting Card 2: Move (Right) */}
+                        <motion.div
+                            animate={{ y: [10, -10, 10], x: [10, -10, 10] }}
+                            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            className="absolute top-1/3 -right-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-10 transform hover:scale-110 transition-transform cursor-pointer group"
+                        >
+                            <div className="w-12 h-12 rounded-full bg-peach/20 flex items-center justify-center group-hover:bg-peach/30 transition-colors">
+                                <span className="text-3xl">🏃</span>
+                            </div>
+                            <span className="font-semibold text-slate-600 text-sm">Move</span>
+                        </motion.div>
+
+                        {/* Orbiting Card 3: Feel (Bottom Left) */}
+                        <motion.div
+                            animate={{ y: [-5, 5, -5], x: [-10, 10, -10] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                            className="absolute bottom-0 left-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
+                        >
+                            <div className="w-12 h-12 rounded-full bg-lavender/20 flex items-center justify-center group-hover:bg-lavender/30 transition-colors">
+                                <span className="text-3xl">💭</span>
+                            </div>
+                            <span className="font-semibold text-slate-600 text-sm">Feel</span>
+                        </motion.div>
+
+                        {/* Connecting Lines (SVG) */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-30 z-0">
+                            <motion.path
+                                d="M 100 100 L 200 200"
+                                stroke="#9B7EBD"
+                                strokeWidth="2"
+                                strokeDasharray="5,5"
+                                animate={{ strokeDashoffset: [0, 10] }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.path
+                                d="M 300 150 L 200 200"
+                                stroke="#9B7EBD"
+                                strokeWidth="2"
+                                strokeDasharray="5,5"
+                                animate={{ strokeDashoffset: [0, -10] }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            />
+                            <motion.path
+                                d="M 120 300 L 200 200"
+                                stroke="#9B7EBD"
+                                strokeWidth="2"
+                                strokeDasharray="5,5"
+                                animate={{ strokeDashoffset: [0, 10] }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            />
+                        </svg>
                     </div>
                 </motion.div>
             </div>

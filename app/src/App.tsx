@@ -16,7 +16,6 @@ import { createSession } from './lib/supabase';
 import { MoodType, ToolType } from './types';
 import { STARS_PER_TOOL_COMPLETION } from './utils/constants';
 import { parseAuthErrorFromUrl, clearAuthErrorFromUrl, getAuthErrorMessage } from './utils/auth-errors';
-import './App.css';
 
 type View = 'auth' | 'mood-select' | 'chat' | 'tool';
 type AuthView = 'login' | 'register';
@@ -115,31 +114,34 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className="min-h-screen flex flex-col bg-cream">
       <ToastContainer />
 
       {view !== 'tool' && (
-        <header className="app-header">
+        <header className="flex justify-between items-center px-4 sm:px-6 py-4 bg-white shadow-sm sticky top-0 z-50">
           <Logo size="small" />
-          <div className="app-user-info">
-            <div className="app-rewards">
-              <span className="reward-item">
-                <Star size={20} fill="#FFB4A2" color="#FFB4A2" />
+          <div className="flex items-center gap-4">
+            <div className="flex gap-4 items-center">
+              <span className="flex items-center gap-1.5 font-semibold text-slate text-sm sm:text-base">
+                <Star size={20} className="text-peach fill-peach" />
                 {rewards.stars}
               </span>
-              <span className="reward-item">
-                <Coins size={20} fill="#FFB3D1" color="#FFB3D1" />
+              <span className="flex items-center gap-1.5 font-semibold text-slate text-sm sm:text-base">
+                <Coins size={20} className="text-rose fill-rose" />
                 {rewards.coins}
               </span>
             </div>
-            <button className="app-sign-out" onClick={handleSignOut}>
+            <button
+              className="px-3 py-1.5 sm:px-4 sm:py-2 bg-transparent text-slate-light border border-slate-200 rounded-lg text-xs sm:text-sm font-semibold hover:bg-slate-50 hover:text-lavender hover:border-lavender transition-all"
+              onClick={handleSignOut}
+            >
               Sign Out
             </button>
           </div>
         </header>
       )}
 
-      <main className="app-main">
+      <main className="flex-1 flex flex-col relative">
         {view === 'mood-select' && (
           <MoodSelector
             onMoodSelect={handleMoodSelect}
@@ -147,33 +149,33 @@ function App() {
         )}
 
         {view === 'chat' && (
-          <div className="chat-view">
+          <div className="flex-1 flex flex-col h-[calc(100vh-70px)]">
             <ChatInterface
               userId={user.id}
               sessionId={sessionId}
               mood={currentMood}
               onToolSuggested={handleToolSuggested}
             />
-            <div className="tool-shortcuts">
+            <div className="flex gap-2 p-4 bg-white border-t border-slate-200 overflow-x-auto shrink-0 safe-area-bottom">
               <button
-                className="tool-shortcut-button"
+                className="flex-1 min-w-[100px] px-4 py-3 bg-white text-slate border-2 border-slate-200 rounded-xl text-sm font-semibold hover:border-sky hover:bg-sky-light transition-all flex items-center justify-center gap-2 active:scale-95"
                 onClick={() => handleStartTool('breathing')}
               >
-                <Wind size={18} color="#A4CAFE" style={{ marginRight: '6px' }} />
+                <Wind size={18} className="text-sky" />
                 Breathing
               </button>
               <button
-                className="tool-shortcut-button"
+                className="flex-1 min-w-[100px] px-4 py-3 bg-white text-slate border-2 border-slate-200 rounded-xl text-sm font-semibold hover:border-mint hover:bg-mint-light transition-all flex items-center justify-center gap-2 active:scale-95"
                 onClick={() => handleStartTool('movement')}
               >
-                <Users size={18} color="#A8E6CF" style={{ marginRight: '6px' }} />
+                <Users size={18} className="text-mint" />
                 Movement
               </button>
               <button
-                className="tool-shortcut-button"
+                className="flex-1 min-w-[100px] px-4 py-3 bg-white text-slate border-2 border-slate-200 rounded-xl text-sm font-semibold hover:border-rose hover:bg-rose-light transition-all flex items-center justify-center gap-2 active:scale-95"
                 onClick={() => handleStartTool('affirmation')}
               >
-                <Sparkles size={18} color="#FFB3D1" style={{ marginRight: '6px' }} />
+                <Sparkles size={18} className="text-rose" />
                 Affirmations
               </button>
             </div>
