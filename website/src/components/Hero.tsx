@@ -22,11 +22,11 @@ export default function Hero() {
 
             {/* Header */}
             <div className="absolute top-0 left-0 right-0 z-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between backdrop-blur-sm bg-white/10 rounded-b-2xl mx-4 mt-2 border border-white/20 shadow-sm">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
                     <Logo size="medium" />
                     <div className="flex gap-4">
                         <a href={APP_URL} target="_blank" rel="noopener noreferrer">
-                            <button className="px-6 py-2.5 rounded-full bg-white/80 hover:bg-white text-lavender-dark font-semibold transition-all shadow-lg hover:shadow-xl border border-white/50 backdrop-blur-md">
+                            <button className="px-6 py-2.5 rounded-full bg-white hover:bg-lavender-light text-lavender-dark font-semibold transition-all shadow-md hover:shadow-lg">
                                 Launch App
                             </button>
                         </a>

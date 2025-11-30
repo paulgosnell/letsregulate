@@ -75,18 +75,25 @@ export class VoiceConversation {
         }
       };
 
-      // 5. Add local audio track (microphone) - must be sendrecv for bidirectional audio
+      // 5. Add local audio track (microphone)
       const audioTrack = this.audioStream.getAudioTracks()[0];
-      console.log('[Voice] Adding local audio track:', audioTrack.label);
-      this.peerConnection.addTransceiver(audioTrack, { direction: 'sendrecv' });
+      console.log('[Voice] Adding local audio track:', audioTrack.label, 'enabled:', audioTrack.enabled, 'muted:', audioTrack.muted);
+      this.peerConnection.addTrack(audioTrack, this.audioStream);
 
       // 6. Create data channel for events
       this.dataChannel = this.peerConnection.createDataChannel('oai-events');
       this.dataChannel.onmessage = this.handleDataChannelMessage.bind(this);
+      this.dataChannel.onopen = () => console.log('[Voice] Data channel opened');
 
       // 7. Create and send SDP offer
       const offer = await this.peerConnection.createOffer();
       await this.peerConnection.setLocalDescription(offer);
+      console.log('[Voice] SDP offer created, has audio:', offer.sdp?.includes('m=audio'));
+
+      // Monitor ICE connection state
+      this.peerConnection.oniceconnectionstatechange = () => {
+        console.log('[Voice] ICE state:', this.peerConnection?.iceConnectionState);
+      };
 
       const sdpResponse = await fetch('https://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-12-17', {
         method: 'POST',
