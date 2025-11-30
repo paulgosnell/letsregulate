@@ -1,5 +1,6 @@
 // App Configuration
-export const APP_URL = import.meta.env.VITE_APP_URL || 'https://app.letsregulateapp.com';
+const rawAppUrl = import.meta.env.VITE_APP_URL || 'https://app.letsregulateapp.com';
+export const APP_URL = rawAppUrl.startsWith('http') ? rawAppUrl : `https://${rawAppUrl}`;
 
 export const colors = {
   seaGlass: '#8B9D83',
