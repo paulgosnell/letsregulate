@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Wind, Users, Sparkles } from 'lucide-react';
 import WaveBackground from './WaveBackground';
 import Logo from './Logo';
 import { APP_URL } from '../utils/constants';
@@ -105,11 +106,28 @@ export default function Hero() {
                         <motion.div
                             animate={{ y: [-10, 10, -10] }}
                             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute inset-0 m-auto w-48 h-48 bg-white/30 backdrop-blur-md rounded-full border border-white/60 shadow-[0_0_40px_rgba(255,255,255,0.5)] flex items-center justify-center z-20"
+                            className="absolute inset-0 m-auto w-48 h-48 bg-white/30 backdrop-blur-md rounded-full border border-white/60 shadow-[0_0_40px_rgba(255,255,255,0.5)] flex items-center justify-center z-20 overflow-hidden"
                         >
-                            <div className="text-center">
-                                <span className="text-6xl mb-2 block">✨</span>
-                                <span className="font-bold text-slate-700 text-lg tracking-wide">Luma</span>
+                            <div className="relative w-full h-full">
+                                <video
+                                    className="w-full h-full object-cover opacity-90"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                >
+                                    <source
+                                        src="https://wgrqgcwabpebxtkwmnkb.supabase.co/storage/v1/object/public/video/lumna.mov"
+                                        type="video/quicktime"
+                                    />
+                                    <source
+                                        src="https://wgrqgcwabpebxtkwmnkb.supabase.co/storage/v1/object/public/video/lumna.mov"
+                                        type="video/mp4"
+                                    />
+                                </video>
+                                <div className="absolute bottom-4 left-0 right-0 text-center">
+                                    <span className="font-bold text-slate-700 text-lg tracking-wide bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full">Luma</span>
+                                </div>
                             </div>
                         </motion.div>
 
@@ -120,7 +138,7 @@ export default function Hero() {
                             className="absolute top-0 left-0 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-mint/20 flex items-center justify-center group-hover:bg-mint/30 transition-colors">
-                                <span className="text-3xl">🌬️</span>
+                                <Wind className="w-6 h-6 text-mint-dark" />
                             </div>
                             <span className="font-semibold text-slate-600 text-sm">Breathe</span>
                         </motion.div>
@@ -132,7 +150,7 @@ export default function Hero() {
                             className="absolute top-1/3 -right-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-10 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-peach/20 flex items-center justify-center group-hover:bg-peach/30 transition-colors">
-                                <span className="text-3xl">🏃</span>
+                                <Users className="w-6 h-6 text-peach-dark" />
                             </div>
                             <span className="font-semibold text-slate-600 text-sm">Move</span>
                         </motion.div>
@@ -144,7 +162,7 @@ export default function Hero() {
                             className="absolute bottom-0 left-8 w-32 h-32 bg-white/60 backdrop-blur-xl rounded-3xl border border-white/80 shadow-xl flex flex-col items-center justify-center gap-2 z-30 transform hover:scale-110 transition-transform cursor-pointer group"
                         >
                             <div className="w-12 h-12 rounded-full bg-lavender/20 flex items-center justify-center group-hover:bg-lavender/30 transition-colors">
-                                <span className="text-3xl">💭</span>
+                                <Sparkles className="w-6 h-6 text-lavender-dark" />
                             </div>
                             <span className="font-semibold text-slate-600 text-sm">Feel</span>
                         </motion.div>
