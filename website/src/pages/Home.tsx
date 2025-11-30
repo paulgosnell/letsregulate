@@ -9,15 +9,18 @@ import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans selection:bg-lavender selection:text-white">
       <Hero />
-      <AppShowcase />
-      <WhatItIs />
-      <HowItWorks />
-      <WhyItMatters />
-      <Audiences />
-      <CallToAction />
-      <Footer />
+
+      <div className="relative z-10 bg-cream">
+        <AppShowcase />
+        <WhatItIs />
+        <HowItWorks />
+        <WhyItMatters />
+        <Audiences />
+        <CallToAction />
+        <Footer />
+      </div>
     </div>
   );
 }
