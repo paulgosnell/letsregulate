@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { VoiceConversation } from '../../lib/elevenlabs';
+import { VoiceConversation } from '../../lib/openai-realtime';
 import './VoiceChat.css';
 
 interface VoiceChatProps {
@@ -35,6 +35,7 @@ export function VoiceChat({ onClose, mood }: VoiceChatProps) {
   const initializeVoice = async () => {
     try {
       const conversation = new VoiceConversation({
+        voice: 'coral', // Friendly, clear voice - good for children
         systemPrompt: `You are Regulation Buddy, a warm, patient, and nurturing emotional support companion for children aged 3-17. Your role is to help children understand and manage their emotions through gentle conversation.
 
 PERSONALITY:
@@ -77,7 +78,7 @@ Remember: Every big feeling is valid, and you're here to help them work through 
         onStatusChange: (newStatus) => {
           setStatus(newStatus);
           if (newStatus === 'error') {
-            setError('Connection failed. Please check your ElevenLabs credentials.');
+            setError('Connection failed. Please check your microphone permissions.');
           }
         },
         onMessage: (role, text) => {
