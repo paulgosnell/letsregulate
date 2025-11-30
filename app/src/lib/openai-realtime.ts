@@ -32,9 +32,12 @@ export class VoiceConversation {
     try {
       this.config.onStatusChange?.('connecting');
 
-      // Create audio element for playback
+      // Create audio element for playback and add to DOM
       this.remoteAudio = document.createElement('audio');
       this.remoteAudio.autoplay = true;
+      this.remoteAudio.setAttribute('playsinline', 'true');
+      this.remoteAudio.style.display = 'none';
+      document.body.appendChild(this.remoteAudio);
 
       // 1. Get ephemeral key from Supabase Edge Function
       const { data, error } = await supabase.functions.invoke('openai-realtime-session', {
@@ -52,7 +55,8 @@ export class VoiceConversation {
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
-          autoGainControl: true
+          autoGainControl: true,
+          sampleRate: 24000
         }
       });
 
@@ -63,14 +67,18 @@ export class VoiceConversation {
 
       // 4. Handle incoming audio from OpenAI
       this.peerConnection.ontrack = (event) => {
+        console.log('[Voice] Received remote track:', event.track.kind);
         if (this.remoteAudio && event.streams[0]) {
           this.remoteAudio.srcObject = event.streams[0];
+          // Ensure audio plays
+          this.remoteAudio.play().catch(e => console.warn('[Voice] Audio autoplay blocked:', e));
         }
       };
 
-      // 5. Add local audio track (microphone)
+      // 5. Add local audio track (microphone) - must be sendrecv for bidirectional audio
       const audioTrack = this.audioStream.getAudioTracks()[0];
-      this.peerConnection.addTrack(audioTrack, this.audioStream);
+      console.log('[Voice] Adding local audio track:', audioTrack.label);
+      this.peerConnection.addTransceiver(audioTrack, { direction: 'sendrecv' });
 
       // 6. Create data channel for events
       this.dataChannel = this.peerConnection.createDataChannel('oai-events');
@@ -189,17 +197,22 @@ export class VoiceConversation {
     this.dataChannel.send(JSON.stringify({
       type: 'session.update',
       session: {
+        modalities: ['text', 'audio'],
         instructions: this.config.systemPrompt || 'You are a helpful assistant.',
         voice: this.config.voice,
+        input_audio_format: 'pcm16',
+        output_audio_format: 'pcm16',
         input_audio_transcription: { model: 'whisper-1' },
         turn_detection: {
           type: 'server_vad',
           threshold: 0.5,
           prefix_padding_ms: 300,
-          silence_duration_ms: 600
+          silence_duration_ms: 500,
+          create_response: true
         }
       }
     }));
+    console.log('[Voice] Session config sent');
 
     // Send first message if provided
     if (this.config.firstMessage) {
@@ -232,6 +245,7 @@ export class VoiceConversation {
     }
     if (this.remoteAudio) {
       this.remoteAudio.srcObject = null;
+      this.remoteAudio.remove(); // Remove from DOM
       this.remoteAudio = null;
     }
     this.isConnected = false;
