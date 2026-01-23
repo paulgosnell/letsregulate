@@ -19,14 +19,53 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 
 // Helper functions
 export async function getProfile(userId: string) {
-  const { data, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', userId)
-    .single();
+  console.log('getProfile: Starting query for', userId);
 
-  if (error) throw error;
-  return data;
+  // Workaround: Use direct fetch with timeout due to Supabase client hanging issue
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+  try {
+    // Get auth token from localStorage
+    const tokenData = localStorage.getItem(`sb-${supabaseUrl?.split('//')[1]?.split('.')[0]}-auth-token`);
+    const accessToken = tokenData ? JSON.parse(tokenData)?.access_token : null;
+
+    const response = await fetch(
+      `${supabaseUrl}/rest/v1/profiles?id=eq.${userId}&select=*`,
+      {
+        headers: {
+          'apikey': supabaseAnonKey,
+          'Authorization': accessToken ? `Bearer ${accessToken}` : '',
+          'Content-Type': 'application/json'
+        },
+        signal: controller.signal
+      }
+    );
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || `HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('getProfile: Query completed', { found: data.length > 0 });
+
+    if (data.length === 0) {
+      throw { code: 'PGRST116', message: 'No rows found' };
+    }
+
+    return data[0];
+  } catch (err: any) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      console.error('getProfile: Request timed out');
+      throw new Error('Profile request timed out');
+    }
+    console.error('getProfile: Caught error', err);
+    throw err;
+  }
 }
 
 export async function updateRewards(userId: string, stars: number, coins: number) {

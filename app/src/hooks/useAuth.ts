@@ -10,8 +10,20 @@ export function useAuth() {
 
   useEffect(() => {
     console.log('useAuth: Initializing auth check');
+
+    // Timeout wrapper to prevent hanging
+    const getSessionWithTimeout = () => {
+      return Promise.race([
+        supabase.auth.getSession(),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('getSession timeout after 5s')), 5000)
+        )
+      ]);
+    };
+
     // Check active session
-    supabase.auth.getSession().then(({ data: { session }, error }) => {
+    console.log('useAuth: Calling getSession...');
+    getSessionWithTimeout().then(({ data: { session }, error }) => {
       if (error) {
         console.error('Session error:', error);
         setLoading(false);
@@ -27,6 +39,10 @@ export function useAuth() {
         console.log('useAuth: No session, setting loading to false');
         setLoading(false);
       }
+    }).catch((err) => {
+      console.error('useAuth: getSession failed:', err.message);
+      // On timeout, show login screen
+      setLoading(false);
     });
 
     // Listen for auth changes

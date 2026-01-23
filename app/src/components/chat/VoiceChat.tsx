@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { VoiceConversation } from '../../lib/openai-realtime';
+import { GeminiVoiceConversation } from '../../lib/gemini-voice';
 import './VoiceChat.css';
 
 interface VoiceChatProps {
@@ -14,7 +14,7 @@ export function VoiceChat({ onClose, mood }: VoiceChatProps) {
   const [messages, setMessages] = useState<Array<{ role: 'user' | 'agent'; text: string }>>([]);
   const [error, setError] = useState<string | null>(null);
 
-  const conversationRef = useRef<VoiceConversation | null>(null);
+  const conversationRef = useRef<GeminiVoiceConversation | null>(null);
   const hasInitialized = useRef(false);
 
   useEffect(() => {
@@ -28,14 +28,13 @@ export function VoiceChat({ onClose, mood }: VoiceChatProps) {
         conversationRef.current.endSession();
         conversationRef.current = null;
       }
-      // Don't reset hasInitialized to prevent double initialization in Strict Mode
     };
   }, []);
 
   const initializeVoice = async () => {
     try {
-      const conversation = new VoiceConversation({
-        voice: 'coral', // Friendly, clear voice - good for children
+      const conversation = new GeminiVoiceConversation({
+        voice: 'Kore', // Professional, clear voice - good for children
         systemPrompt: `You are Regulation Buddy, a warm, patient, and nurturing emotional support companion for children aged 3-17. Your role is to help children understand and manage their emotions through gentle conversation.
 
 PERSONALITY:
@@ -86,6 +85,9 @@ Remember: Every big feeling is valid, and you're here to help them work through 
         },
         onAgentSpeaking: setIsAgentSpeaking,
         onMicrophoneActive: setIsMicActive,
+        onError: (errorMsg) => {
+          setError(errorMsg);
+        },
       });
 
       conversationRef.current = conversation;
@@ -179,7 +181,7 @@ Remember: Every big feeling is valid, and you're here to help them work through 
             )}
           </div>
         ) : status === 'error' ? (
-          <div className="voice-error-icon">⚠️</div>
+          <div className="voice-error-icon">!</div>
         ) : null}
       </div>
 
