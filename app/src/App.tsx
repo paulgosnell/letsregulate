@@ -4,8 +4,8 @@ import { useAuth } from './hooks/useAuth';
 import { useRewards } from './hooks/useRewards';
 import { LoginForm } from './components/auth/LoginForm';
 import { RegisterForm } from './components/auth/RegisterForm';
-import { MoodSelector } from './components/chat/MoodSelector';
-import { ChatInterface } from './components/chat/ChatInterface';
+import { MoodSelector } from './components/conversation';
+import { ConversationUI } from './components/conversation';
 import { BreathingExercise } from './components/tools/BreathingExercise';
 import { MovementExercise } from './components/tools/MovementExercise';
 import { AffirmationExercise } from './components/tools/AffirmationExercise';
@@ -150,7 +150,7 @@ function App() {
 
         {view === 'chat' && (
           <div className="flex-1 flex flex-col h-[calc(100vh-70px)]">
-            <ChatInterface
+            <ConversationUI
               userId={user.id}
               sessionId={sessionId}
               mood={currentMood}
